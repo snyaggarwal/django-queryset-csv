@@ -44,6 +44,21 @@ def render_to_csv_response(queryset, filename=None, append_datestamp=False,
     return response
 
 
+def get_csv(queryset, filename=None, append_datestamp=False, **kwargs):
+    if filename:
+        filename = _validate_and_clean_filename(filename)
+        if append_datestamp:
+            filename = _append_datestamp(filename)
+    else:
+        filename = generate_filename(queryset,
+                                     append_datestamp=append_datestamp)
+
+    _file = open(filename, 'w')
+    write_csv(queryset, _file, **kwargs)
+
+    return _file
+
+
 def write_csv(queryset, file_obj, **kwargs):
     """
     The main worker function. Writes CSV data to a file object based on the
