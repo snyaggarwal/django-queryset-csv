@@ -44,7 +44,7 @@ def render_to_csv_response(queryset, filename=None, append_datestamp=False,
     return response
 
 
-def get_csv(queryset, filename=None, append_datestamp=False, **kwargs):
+def csv_file_for(queryset, filename=None, append_datestamp=False, **kwargs):
     if filename:
         filename = _validate_and_clean_filename(filename)
         if append_datestamp:
