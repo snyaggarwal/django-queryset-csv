@@ -182,7 +182,7 @@ def _validate_and_clean_filename(filename):
         else:
             filename = filename[:-4]
 
-    filename = slugify(unicode(filename)) + '.csv'
+    filename = slugify(str(filename)) + '.csv'
     return filename
 
 
@@ -203,7 +203,7 @@ def _sanitize_unicode_record(field_serializer_map, record):
         if isinstance(value, datetime.datetime):
             return value.isoformat()
         else:
-            return unicode(value)
+            return str(value)
 
     obj = {}
     for key, val in six.iteritems(record):
