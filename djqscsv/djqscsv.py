@@ -162,7 +162,7 @@ def generate_filename(queryset, append_datestamp=False):
     Takes a queryset and returns a default
     base filename based on the underlying model
     """
-    base_filename = slugify(unicode(queryset.model.__name__)) + '_export.csv'
+    base_filename = slugify(str(queryset.model.__name__)) + '_export.csv'
 
     if append_datestamp:
         base_filename = _append_datestamp(base_filename)
@@ -192,7 +192,7 @@ def _safe_utf8_stringify(value):
     elif isinstance(value, unicode):
         return value.encode('utf-8')
     else:
-        return unicode(value).encode('utf-8')
+        return str(value).encode('utf-8')
 
 
 def _sanitize_unicode_record(field_serializer_map, record):
