@@ -189,8 +189,6 @@ def _validate_and_clean_filename(filename):
 def _safe_utf8_stringify(value):
     if isinstance(value, str):
         return value
-    elif isinstance(value, unicode):
-        return value.encode('utf-8')
     else:
         return str(value).encode('utf-8')
 
